@@ -29,6 +29,7 @@ namespace ProyectoJuego
             dibujarChinches();
         }
 
+        #region Eventos
         private void TeclaAbajo(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
@@ -59,6 +60,10 @@ namespace ProyectoJuego
             if (e.KeyCode == Keys.Escape && juego == false)
             {
                 //Hacer que se regrese al menu
+            }
+            if (e.KeyCode == Keys.Enter && juego == true)
+            {
+                //Haver que pase al siguiente nivel
             }
         }
         private void TeclaArriba(object sender, KeyEventArgs e)
@@ -157,34 +162,24 @@ namespace ProyectoJuego
                         {
                             PictureBox pbChinche = (PictureBox)ctrl;
 
-                            if (pbBalaJugador.Bounds.IntersectsWith(pbChinche.Bounds) /*&& !Touched(alien)*/)
+                            if (pbBalaJugador.Bounds.IntersectsWith(pbChinche.Bounds))
                             {
                                 this.Controls.Remove(pbBalaJugador);
                                 this.Controls.Remove(pbChinche);
                                 imagenChinches.Remove(pbChinche);
                                 puntos += 500;
                                 puntaje(puntos);
-                                //CheckForWinner();
+                                verificarGanador();
                             }
-                            /*
-                            else if (pbBalaJugador.Bounds.IntersectsWith(pbChinche.Bounds) /*&& Touched(alien))
-                            {
-                                this.Controls.Remove(pbBalaJugador);
-                                this.Controls.Remove(pbChinche);
-                                //delay.Add(alien);
-                                //pts += 5;
-                                //Score(pts);
-                                //CheckForWinner();
-                            }
-                            */
                         }
                     }
 
                 }
             }
         }
+        #endregion
 
-
+        #region Funciones
         private void dibujarChinches()
         {
             foreach (Control c in this.Controls)
@@ -248,9 +243,6 @@ namespace ProyectoJuego
         }    
         private void textoPerdiste()
         {
-            //lbTerminar.Text = "Perdiste";
-            //lbTerminar.Visible = true;
-            
             foreach (Control c in this.Controls)
             {
                 if (c is Label && c.Name == "lbTerminar")
@@ -281,5 +273,47 @@ namespace ProyectoJuego
             textoSalir();
             juego = false;
         }
+        private void verificarGanador()
+        {
+            int count = 0;
+
+            foreach (Control c in this.Controls)
+            {
+                if (c is PictureBox && c.Name == "Chinche") count++;
+            }
+
+            if (count == 0) ganaste();
+        }
+        private void textoGanaste()
+        {
+            foreach (Control c in this.Controls)
+            {
+                if (c is Label && c.Name == "lbTerminar")
+                {
+                    Label lbTerminar = (Label)c;
+                    c.Visible = true;
+                    lbTerminar.Text = "Ganaste" + "\n" + "Puntuacion: " + puntos.ToString();
+                }
+                else
+                {
+                    c.Visible = false;
+                }
+            }
+        }
+        private void textoSiguiente()
+        {
+            lbSalir.Text = "Presiona ENTER para pasar al siguiente nivel";
+            lbSalir.Visible = true;
+        }
+        private void ganaste()
+        {
+            timerDetectarBalaChinche.Stop();
+            timerMoverJugador.Stop();
+            timerFrecuenciaDeDisparoEnemigo.Stop();
+            timerDispararBalaJugador.Stop();
+            textoGanaste();
+            textoSiguiente();
+        }
+        #endregion
     }
 }

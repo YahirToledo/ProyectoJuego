@@ -89,7 +89,7 @@
             this.lbTerminar.AutoSize = true;
             this.lbTerminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTerminar.ForeColor = System.Drawing.Color.White;
-            this.lbTerminar.Location = new System.Drawing.Point(188, 217);
+            this.lbTerminar.Location = new System.Drawing.Point(12, 47);
             this.lbTerminar.Name = "lbTerminar";
             this.lbTerminar.Size = new System.Drawing.Size(158, 55);
             this.lbTerminar.TabIndex = 2;

@@ -14,11 +14,6 @@ namespace ProyectoJuego
         private int filas;
         private int espacio;
 
-        //private int ancho;
-        //private int alto;
-        //private int poscX;
-        //private int poscY;
-
         public int Columnas
         {
             get => columnas;
@@ -29,7 +24,6 @@ namespace ProyectoJuego
             get => filas;
             set => filas = value <= 0 ? 3 : value;
         }
-
         public Enemigo(int ancho, int alto, int poscX, int poscY) : base(ancho, alto, poscX, poscY)
         {
             Ancho = 50;
@@ -40,21 +34,6 @@ namespace ProyectoJuego
             PoscY = 30;
             espacio = 5;
         }
-
-
-        /*
-        public Chinche()
-        {
-            ancho = 40;
-            alto = 40;
-            columnas = 10;
-            filas = 4;
-            espacio = 10;
-            poscX = 150;
-            poscY = 0;
-        }
-        */
-
         private void crearEnemigo(Form p)
         {
             PictureBox pbChinche = new PictureBox();
@@ -67,7 +46,6 @@ namespace ProyectoJuego
             pbChinche.Name = "Chinche";
             p.Controls.Add(pbChinche);
         }
-
         public void Malla(Form p)
         {
             for (int i = 0; i < filas; i++)
@@ -76,12 +54,9 @@ namespace ProyectoJuego
                 {
                     crearEnemigo(p);
                     PoscX += Ancho + espacio;
-                    //poscX += ancho + espacio;
                 }
                 PoscY += Alto + espacio;
                 PoscX = 70;
-                //poscY += alto + espacio;
-                //poscX = 150;
             }
         }
     }
