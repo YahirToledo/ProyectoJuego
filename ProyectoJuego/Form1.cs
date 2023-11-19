@@ -16,6 +16,7 @@ namespace ProyectoJuego
         bool moverIzq;
         bool disparar;
         bool pausa = false;
+        bool juego = true;
         int speed = 20;
         int puntos = 0;
         PictureBox pbPausa = new PictureBox();
@@ -54,6 +55,10 @@ namespace ProyectoJuego
                 quitarPausa();
                 borrarPausa(pbPausa);
                 pausa = false;
+            }
+            if (e.KeyCode == Keys.Escape && juego == false)
+            {
+                //Hacer que se regrese al menu
             }
         }
         private void TeclaArriba(object sender, KeyEventArgs e)
@@ -110,7 +115,7 @@ namespace ProyectoJuego
                     if (laser.Bounds.IntersectsWith(pbJugador.Bounds))
                     {
                         this.Controls.Remove(laser);
-                        //LoseLife();
+                        perdiste();
                     }
                 }
             }
@@ -179,6 +184,7 @@ namespace ProyectoJuego
             }
         }
 
+
         private void dibujarChinches()
         {
             foreach (Control c in this.Controls)
@@ -226,19 +232,54 @@ namespace ProyectoJuego
         {
             Controls.Remove(pbPausa);
         }
-        public void ponerPausa()
+        private void ponerPausa()
         {
             timerMoverJugador.Stop();
             timerDetectarBalaChinche.Stop();
             timerFrecuenciaDeDisparoEnemigo.Stop();
             timerDispararBalaJugador.Stop();
         }
-        public void quitarPausa()
+        private void quitarPausa()
         {
             timerMoverJugador.Start();
             timerDetectarBalaChinche.Start();
             timerFrecuenciaDeDisparoEnemigo.Start();
             timerDispararBalaJugador.Start();
         }    
+        private void textoPerdiste()
+        {
+            //lbTerminar.Text = "Perdiste";
+            //lbTerminar.Visible = true;
+            
+            foreach (Control c in this.Controls)
+            {
+                if (c is Label && c.Name == "lbTerminar")
+                {
+                    Label lbTerminar = (Label)c;
+                    c.Visible = true;
+                    lbTerminar.Text = "Perdiste";
+                }
+                else
+                {
+                    c.Visible = false;
+                }
+            }
+            
+        }
+        private void textoSalir()
+        {
+            lbSalir.Text = "Presiona ESC para salir al menu";
+            lbSalir.Visible = true;
+        }
+        private void perdiste()
+        {
+            timerDetectarBalaChinche.Stop();
+            timerMoverJugador.Stop();
+            timerFrecuenciaDeDisparoEnemigo.Stop();
+            timerDispararBalaJugador.Stop();
+            textoPerdiste();
+            textoSalir();
+            juego = false;
+        }
     }
 }

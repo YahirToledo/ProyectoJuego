@@ -35,6 +35,8 @@
             this.timerFrecuenciaDeDisparoEnemigo = new System.Windows.Forms.Timer(this.components);
             this.timerDetectarBalaChinche = new System.Windows.Forms.Timer(this.components);
             this.timerDispararBalaJugador = new System.Windows.Forms.Timer(this.components);
+            this.lbTerminar = new System.Windows.Forms.Label();
+            this.lbSalir = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbJugador)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,12 +84,39 @@
             this.timerDispararBalaJugador.Interval = 10;
             this.timerDispararBalaJugador.Tick += new System.EventHandler(this.timerDispararBalaJugador_Tick);
             // 
+            // lbTerminar
+            // 
+            this.lbTerminar.AutoSize = true;
+            this.lbTerminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTerminar.ForeColor = System.Drawing.Color.White;
+            this.lbTerminar.Location = new System.Drawing.Point(188, 217);
+            this.lbTerminar.Name = "lbTerminar";
+            this.lbTerminar.Size = new System.Drawing.Size(158, 55);
+            this.lbTerminar.TabIndex = 2;
+            this.lbTerminar.Text = "label1";
+            this.lbTerminar.Visible = false;
+            // 
+            // lbSalir
+            // 
+            this.lbSalir.AutoSize = true;
+            this.lbSalir.BackColor = System.Drawing.Color.Transparent;
+            this.lbSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSalir.ForeColor = System.Drawing.Color.White;
+            this.lbSalir.Location = new System.Drawing.Point(12, 511);
+            this.lbSalir.Name = "lbSalir";
+            this.lbSalir.Size = new System.Drawing.Size(66, 24);
+            this.lbSalir.TabIndex = 3;
+            this.lbSalir.Text = "label1";
+            this.lbSalir.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(584, 561);
+            this.Controls.Add(this.lbSalir);
+            this.Controls.Add(this.lbTerminar);
             this.Controls.Add(this.lbPuntuacion);
             this.Controls.Add(this.pbJugador);
             this.Name = "Form1";
@@ -108,6 +137,8 @@
         private System.Windows.Forms.Timer timerFrecuenciaDeDisparoEnemigo;
         private System.Windows.Forms.Timer timerDetectarBalaChinche;
         private System.Windows.Forms.Timer timerDispararBalaJugador;
+        private System.Windows.Forms.Label lbTerminar;
+        private System.Windows.Forms.Label lbSalir;
     }
 }
 
